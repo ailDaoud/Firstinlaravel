@@ -24,6 +24,7 @@ class User extends Model
     protected $casts=[
         'is_active'=>'boolean'
     ];
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
     protected $hidden=['created_at', 'updated_at'];
 

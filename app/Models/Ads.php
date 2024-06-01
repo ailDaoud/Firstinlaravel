@@ -16,6 +16,10 @@ class Ads extends Model
     protected $casts = [
         'is_active' => 'boolean'
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     protected $guarded = [
         'id',
         'created_at',

@@ -10,18 +10,25 @@ class Img extends Model
 {
     use HasFactory;
     protected $table = "imgs";
-    protected $fillable =[
+    protected $fillable = [
         'img_url',
         'is_active'
     ];
-    protected $guarded =[
-        'created_at','updated_at','ade_id'
+    protected $guarded = [
+        'created_at',
+        'updated_at',
+        'ade_id'
     ];
-    protected $casts=[
-        'is_active'=>'boolean'
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
-    public function ads():BelongsTo{
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+    public function ads(): BelongsTo
+    {
         return $this->belongsTo(Ads::class);
-     }
+    }
 
 }
