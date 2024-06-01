@@ -16,15 +16,13 @@ class CreateAdsTable extends Migration
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->longText('describtion');
-            $table->integer('amount');
-            $table->decimal('price');
-            $table->Text('note');
+            $table->string('name')->nullable();
+            $table->longText('describtion')->nullable();
+            $table->integer('amount')->nullable();
+            $table->decimal('price')->nullable();
+            $table->Text('note')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-
-
-
+            $table->boolean('is_active')->default(0);
         });
     }
 

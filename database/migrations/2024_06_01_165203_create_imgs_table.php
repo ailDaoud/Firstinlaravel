@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateImgsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
-         //   $table->id();
+        Schema::create('imgs', function (Blueprint $table) {
             $table->timestamps();
             $table->foreignId('ade_id')->references('id')->on('ads')->onUpdate('cascade')->onDelete('cascade');
-            $table->longText('img_url');
+            $table->longText('img_url')->nullable();
+            $table->boolean('is_active')->default(0);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('imgs');
     }
 }
