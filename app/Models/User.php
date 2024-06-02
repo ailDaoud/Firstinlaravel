@@ -21,14 +21,15 @@ class User extends Model
         'verify_email',
         'verify_number'
     ];
-    protected $casts=[
-        'is_active'=>'boolean'
+    protected $casts = [
+        'is_active' => 'boolean'
     ];
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
-    protected $hidden=['created_at', 'updated_at'];
+    protected $guarded = ['id'];
 
-    public function ads():HasMany{
+
+    public function ads(): hasMany
+    {
         return $this->hasMant(Ads::class);
     }
 }

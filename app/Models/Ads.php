@@ -16,19 +16,16 @@ class Ads extends Model
     protected $casts = [
         'is_active' => 'boolean'
     ];
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
+
     protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
+        'id'
     ];
-    public function images():HasMany{
+    public function images(): hasMany
+    {
         return $this->hasMant(Img::class);
     }
-    public function user():BelongsTo{
-       return $this->belongsTo(User::class);
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

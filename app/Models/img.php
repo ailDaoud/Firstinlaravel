@@ -15,14 +15,10 @@ class Img extends Model
         'is_active'
     ];
     protected $guarded = [
-        'created_at',
-        'updated_at',
+
         'ade_id'
     ];
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
+
     protected $casts = [
         'is_active' => 'boolean'
     ];
@@ -30,5 +26,4 @@ class Img extends Model
     {
         return $this->belongsTo(Ads::class);
     }
-
 }
