@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     function store_user(Request $request){
         try{
-            $validator =$this-> getValidationFactory()->make($request->all(),[
+            $validator =$this-> validate($request,[
                 'first_name' => 'required|string|min:3',
                 'last_name' => 'required|string|min:3',
                 "email" => 'required|email|unique:users,email',
@@ -38,7 +38,7 @@ class UserController extends Controller
         catch(Exception $e){
             return response()->json([
                 'status'=>'failed',
-                'validator errors'=>$validator->errors(),
+               // 'validator errors'=>$validator->errors(),
                 'Exceptions'=>$e
             ],200);
         }
