@@ -28,8 +28,8 @@ class User extends Model
     protected $guarded = ['id'];
 
 
-    public function ads(): hasMany
+    public function ads(): HasMany
     {
-        return $this->hasMant(Ads::class);
+        return $this->hasMany(Ads::class);
     }
 }

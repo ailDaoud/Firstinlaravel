@@ -20,9 +20,9 @@ class Ads extends Model
     protected $guarded = [
         'id'
     ];
-    public function images(): hasMany
+    public function images(): HasMany
     {
-        return $this->hasMant(Img::class);
+        return $this->hasMany(Img::class);
     }
     public function user(): BelongsTo
     {
