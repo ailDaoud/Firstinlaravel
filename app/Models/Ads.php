@@ -11,7 +11,7 @@ class Ads extends Model
 {
     use HasFactory;
     protected $table = "ads";
-   
+
     protected $casts = [
         'is_active' => 'boolean'
     ];

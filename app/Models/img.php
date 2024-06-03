@@ -10,9 +10,8 @@ class Img extends Model
 {
     use HasFactory;
     protected $table = "imgs";
- 
-    protected $guarded = [
 
+    protected $guarded = [
         'ade_id'
     ];
 
