@@ -26,6 +26,7 @@ class UserController extends Controller
            $user->email=$request->email;
            $user->phone_number=$request->phone_number;
            $user->address=$request->address;
+           $user->save();
            if($user){
             return response()->json([
                 'status' => 'sucsess',
