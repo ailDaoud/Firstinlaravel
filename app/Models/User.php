@@ -11,16 +11,7 @@ class User extends Model
     use HasFactory;
     protected $table = "users";
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'phone-number',
-        'address',
-        'is_active',
-        'verify_email',
-        'verify_number'
-    ];
+  
     protected $casts = [
         'is_active' => 'boolean'
     ];

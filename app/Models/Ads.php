@@ -11,8 +11,7 @@ class Ads extends Model
 {
     use HasFactory;
     protected $table = "ads";
-    protected $fillable = ['name', 'describtion', 'amount', 'price', 'note', 'user_id', 'is_active'];
-
+   
     protected $casts = [
         'is_active' => 'boolean'
     ];

@@ -10,10 +10,7 @@ class Img extends Model
 {
     use HasFactory;
     protected $table = "imgs";
-    protected $fillable = [
-        'img_url',
-        'is_active'
-    ];
+ 
     protected $guarded = [
 
         'ade_id'
