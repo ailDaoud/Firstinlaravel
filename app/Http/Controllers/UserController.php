@@ -17,28 +17,23 @@ class UserController extends Controller
                 'first_name' => 'required|string|min:3',
                 'last_name' => 'required|string|min:3',
                 "email" => 'required|email|unique:users,email',
-                "phone-number" => 'required|phone-number|unique:user,phone-number',
+                "phone_number" => 'required|phone_number|unique:users,phone_number',
                 "address" => "string|required"
             ]);
-            $user=new User();
+           $user=new User();
            $user->first_name=$request->first_name;
            $user->last_name=$request->last_name;
            $user->email=$request->email;
            $user->phone_number=$request->phone_number;
            $user->address=$request->address;
            $user->save();
-           if($user){
+
             return response()->json([
                 'status' => 'sucsess',
                 'message' => 'done'
             ], 200);
-           }
-           else{
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Invalid email or password'
-            ], 200);
-           }
+
+
         }
         catch(Exception $e){
             return response()->json([
