@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
-//use Dotenv\Validator;
+
 use Illuminate\Support\Facades\Validator;
 
 
 use Exception;
-use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
