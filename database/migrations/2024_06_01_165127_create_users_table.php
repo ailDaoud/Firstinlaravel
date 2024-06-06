@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->boolean('verify_email')->default(0);
             $table->boolean('verify_number')->default(0);
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 

@@ -15,10 +15,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::controller(UserController::class)->group(function () {
-    Route::post('/store_user', 'store_user');
-    Route::get('/showusers', 'showusers');
-});
+/*Route::controller(UserController::class)->group(function () {
+    Route::get('/showusers', 'index');
+    Route::post('/store_user', 'storee');
+});*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

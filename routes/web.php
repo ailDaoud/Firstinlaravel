@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +13,15 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('user',function(){
-    return User::get();
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/showusers', 'index');
+    Route::post('/store_user', 'store');
+    Route::get('/user/show/{id}', 'show');
+    Route::post('/user/update/{id}', 'update');
+    Route::get('/user/delete/{id}', 'destroy');
 });
+
 
 Route::get('/', function () {
     return view('welcome');
