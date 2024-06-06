@@ -93,7 +93,7 @@ class UserController extends Controller
             'first_name' => 'required|string|min:3',
             'last_name' => 'required|string|min:3',
             "email" => 'required|email|unique:users,email',
-            "phone_number" => 'required|phone_number|unique:users,phone_number',
+            "phone_number" => 'required|unique:users,phone_number',
             "address" => "string|required"
         ]);
         if ($validator->fails()) {
@@ -112,6 +112,11 @@ class UserController extends Controller
                 $user->phone_number = $request->phone_number;
                 $user->address = $request->address;
                 $user->save();
+                return response()->json([
+                    'success' => 1,
+                    'result' => $user,
+                    'message' => 'user updated sucsessfully',
+                ], 200);
             }
             else{
                return response()->json([
