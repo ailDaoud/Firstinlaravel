@@ -21,10 +21,10 @@ class Ads extends Model
     ];
     public function images(): HasMany
     {
-        return $this->hasMany(Img::class);
+        return $this->hasMany(Img::class,'ade_id','id');
     }
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

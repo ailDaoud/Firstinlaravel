@@ -15,14 +15,22 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $users = User::all();
         try {
-            if (count($user) > 0) {
+            if ($users) {
                 return response()->json([
                     'success' => 1,
-                    'result' => $user,
+                    'result' => $users,
                     'message' => '',
                 ], 200);
+            }
+            else{
+                return response()->json([
+                    'success' => 0,
+                    'result' => null,
+                    'message' => 'there is no users',
+                ], 200);
+
             }
         } catch (Exception $e) {
             return response()->json([
@@ -35,8 +43,9 @@ class UserController extends Controller
     function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'mid_name' => 'required|string',
             "email" => 'required|email|unique:users,email',
             "phone_number" => 'required', //|unique:users,phone_number',
             "address" => "string|required"
@@ -52,6 +61,7 @@ class UserController extends Controller
             $user = new User();
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
+            $user->mid_name = $request->mid_name;
             $user->email = $request->email;
             $user->phone_number = $request->phone_number;
             $user->address = $request->address;
@@ -72,8 +82,8 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        $user = User::find($id);
-        if ($user == null) {
+        $user = User::findOrFail($id);
+        if (!$user) {
             return response()->json([
                 'success' => 0,
                 'result' => null,
@@ -90,11 +100,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'mid_name' => 'required|string',
             "email" => 'required|email|unique:users,email',
             "phone_number" => 'required|unique:users,phone_number',
-            "address" => "string|required"
+            "address" => "string|required",
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -104,10 +115,11 @@ class UserController extends Controller
             ], 200);
         }
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             if ($user) {
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
+                $user->mid_name = $request->mid_name;
                 $user->email = $request->email;
                 $user->phone_number = $request->phone_number;
                 $user->address = $request->address;
@@ -135,8 +147,9 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
-        $user = User::find($id);
-        if ($user != null) {
+        $user = User::findOrFail($id);
+        if ($user) {
+            $user->ads()->delete();
             $user->delete();
             return response()->json([
                 'success' => 1,

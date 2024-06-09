@@ -21,6 +21,6 @@ class User extends Model
 
     public function ads(): HasMany
     {
-        return $this->hasMany(Ads::class);
+        return $this->hasMany(Ads::class,'user_id','id');
     }
 }

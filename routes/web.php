@@ -14,14 +14,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::controller(UserController::class)->group(function () {
+/*Route::controller(UserController::class)->group(function () {
     Route::get('/showusers', 'index');
     Route::post('/store_user', 'store');
     Route::get('/user/show/{id}', 'show');
     Route::post('/user/update/{id}', 'update');
-    Route::get('/user/delete/{id}', 'destroy');
+    Route::delete('/user/delete/{id}', 'destroy');
+});*/
+Route::resource('users',UserController::class);
+Route::controller(UserController::class)->group(function () {
+    Route::post('/user/update/{id}', 'update');
 });
 
+Route::get('lang/{lang}',['as'=>'lang.switch','uses'=>'use App\Http\Controllers\LocalizeController@switchLang']);
 
 Route::get('/', function () {
     return view('welcome');
