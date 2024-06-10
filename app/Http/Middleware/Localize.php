@@ -17,12 +17,11 @@ class Localize
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Session()->has('local')){
-            App::setLocale(Session()->get('local'));
-        }
-        else{
-            App::setLocale(config('app.fallback_local'));
-        }
+
+       if(! in_array($request->segment(1),config('app.available_locales'))){
+        abort(400);
+       }
+       App::setLocale($request->segment(1));
         return $next($request);
     }
 }

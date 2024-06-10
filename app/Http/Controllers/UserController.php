@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 use Exception;
 use GrahamCampbell\ResultType\Success;
+use Resources\lang\ar;
+use Resources\lang\en;
 
 class UserController extends Controller
 {
@@ -21,7 +23,7 @@ class UserController extends Controller
                 return response()->json([
                     'success' => 1,
                     'result' => $users,
-                    'message' => '',
+                    'message' => __('res.messagee'),
                 ], 200);
             }
             else{
@@ -93,7 +95,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => 1,
                 'result' => $user,
-                'message' => ''
+                'message' => 'message'
             ], 200);
         }
     }

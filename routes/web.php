@@ -23,13 +23,13 @@ use App\Http\Middleware\Localize;
     Route::post('/user/update/{id}', 'update');
     Route::delete('/user/delete/{id}', 'destroy');
 });*/
-//Route::middleware(Localize::class)->prefix('{local}')->group(function(){
+Route::middleware(Localize::class)->prefix('{local}')->group(function(){
     Route::resource('users',UserController::class);
     Route::controller(UserController::class)->group(function () {
         Route::post('/user/update/{id}', 'update');
     });
 
-//});
+});
 
 
 
