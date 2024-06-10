@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ads;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,14 +24,14 @@ class UserController extends Controller
                 return response()->json([
                     'success' => 1,
                     'result' => $users,
-                    'message' => __('res.messagee'),
+                    'message' => "",
                 ], 200);
             }
             else{
                 return response()->json([
                     'success' => 0,
                     'result' => null,
-                    'message' => 'there is no users',
+                    'message' =>  __('res.messagee'),
                 ], 200);
 
             }
@@ -71,7 +72,7 @@ class UserController extends Controller
 
             return response()->json([
                 'success' => 1,
-                'result' => 'user store sucsessfully',
+                'result' => __('res.store'),
                 'message' => ''
             ], 200);
         } catch (Exception $e) {
@@ -89,13 +90,13 @@ class UserController extends Controller
             return response()->json([
                 'success' => 0,
                 'result' => null,
-                'message' => 'user not found'
+                'message' => __('res.show')
             ], 200);
         } else {
             return response()->json([
                 'success' => 1,
                 'result' => $user,
-                'message' => 'message'
+                'message' => ''
             ], 200);
         }
     }
@@ -129,14 +130,14 @@ class UserController extends Controller
                 return response()->json([
                     'success' => 1,
                     'result' => $user,
-                    'message' => 'user updated sucsessfully',
+                    'message' => __('res.update'),
                 ], 200);
             }
             else{
                return response()->json([
                     'success' => 0,
                     'result' => null,
-                    'message' => 'user not found',
+                    'message' => __('res.show'),
                 ], 200);
             }
         } catch (Exception $e) {
@@ -156,13 +157,13 @@ class UserController extends Controller
             return response()->json([
                 'success' => 1,
                 'result' => null,
-                'message' => 'user deleted sucsessfully'
+                'message' => __('res.delete')
             ], 200);
         } else {
             return response()->json([
                 'success' => 0,
                 'result' => null,
-                'message' => 'user not found'
+                'message' => __('res.show')
             ], 200);
         }
     }

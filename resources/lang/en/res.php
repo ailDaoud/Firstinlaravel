@@ -3,5 +3,8 @@
 return [
 
 'messagee'=>'there is no user',
-'result'=>'no thing'
+'store'=>'user store sucsessfully',
+'show'=>'user not found',
+'update'=>'user updated sucsessfully',
+'delete'=>'user deleted sucsessfully'
 ];
