@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Localize;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +23,15 @@ use App\Http\Controllers\UserController;
     Route::post('/user/update/{id}', 'update');
     Route::delete('/user/delete/{id}', 'destroy');
 });*/
-Route::resource('users',UserController::class);
-Route::controller(UserController::class)->group(function () {
-    Route::post('/user/update/{id}', 'update');
-});
+//Route::middleware(Localize::class)->prefix('{local}')->group(function(){
+    Route::resource('users',UserController::class);
+    Route::controller(UserController::class)->group(function () {
+        Route::post('/user/update/{id}', 'update');
+    });
 
-Route::get('lang/{lang}',['as'=>'lang.switch','uses'=>'use App\Http\Controllers\LocalizeController@switchLang']);
+//});
+
+
 
 Route::get('/', function () {
     return view('welcome');

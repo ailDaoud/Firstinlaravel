@@ -17,8 +17,8 @@ class Localize
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Session()->has('applocal')and array_key_exists(Session()->get('applocal'),config('languages'))){
-            App::setLocale(Session()->get('applocal'));
+        if(Session()->has('local')){
+            App::setLocale(Session()->get('local'));
         }
         else{
             App::setLocale(config('app.fallback_local'));
