@@ -18,10 +18,13 @@ class Localize
     public function handle(Request $request, Closure $next)
     {
 
-       if(! in_array($request->segment(1),config('app.available_locales'))){
+     /*  if(! in_array($request->segment(1),config('app.available_locales'))){
         abort(400);
-       }
-       App::setLocale($request->segment(1));
+       }*/
+      // App::setLocale($request->segment(1));
+
+      App::setLocale($request->header('Language',$request->segment(1)??'en'));
         return $next($request);
+
     }
 }

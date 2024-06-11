@@ -16,6 +16,7 @@ use Resources\lang\en;
 
 class UserController extends Controller
 {
+
     public function index()
     {
         $users = User::all();
@@ -26,14 +27,12 @@ class UserController extends Controller
                     'result' => $users,
                     'message' => "",
                 ], 200);
-            }
-            else{
+            } else {
                 return response()->json([
                     'success' => 0,
                     'result' => null,
                     'message' =>  __('res.messagee'),
                 ], 200);
-
             }
         } catch (Exception $e) {
             return response()->json([
@@ -132,9 +131,8 @@ class UserController extends Controller
                     'result' => $user,
                     'message' => __('res.update'),
                 ], 200);
-            }
-            else{
-               return response()->json([
+            } else {
+                return response()->json([
                     'success' => 0,
                     'result' => null,
                     'message' => __('res.show'),
