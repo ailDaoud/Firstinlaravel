@@ -43,4 +43,5 @@ Route::controller(AdsController::class)->group(function () {
     Route::delete('/ads/delete/{id}', 'destroy');
     Route::get('/ads/show/{id}', 'show');
     Route::post('/ads/store', 'store');
+    Route::put('/ads/update/{id}', 'update');
 });
