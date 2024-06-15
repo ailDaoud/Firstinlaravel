@@ -67,7 +67,7 @@ class AdsController extends Controller
                 $imgs = $request->file('img_id');
                 foreach ($imgs as $img) {
                     $img_url = time() . '.' . $img->getClientOriginalName();
-                    $img->store('ads_images');
+                    $img->move('ads_images', $img_url);
                     $imge->create(['image_path' => $img_url]); //['image_path'=> $img_url]
                 }
             }
@@ -104,13 +104,13 @@ class AdsController extends Controller
 
     public function update(Request $request, $id)
     {
-      /*  $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'describtion' => 'required|string',
             'amount' => 'required|integer',
             'price' => 'required|integer',
             'note' => 'required|string',
-            'img_id' => 'required|image'
+            'img_id' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -118,58 +118,50 @@ class AdsController extends Controller
                 'result' => null,
                 'message' => $validator->errors(),
             ], 200);
-        }*/
+        }
         try {
 
             $ads = Ads::findOrFail($id);
             $imge = new Img();
             if ($ads) {
-                $ads->name = $request->name;
-                $ads->describtion = $request->describtion;
-                $ads->amount = $request->amount;
-                $ads->price = $request->price;
-                $ads->note = $request->note;
-                $ads->save();
-              /*  if ($request->has('name')) {
+                if ($request->name) {
                     $ads->name = $request->name;
                 }
-                if ($request->has('describtion')) {
+                if ($request->describtion) {
                     $ads->describtion = $request->describtion;
                 }
-                if ($request->has('amount')) {
+                if ($request->amount) {
                     $ads->amount = $request->amount;
-
                 }
-                if ($request->has('price')) {
+                if ($request->price) {
                     $ads->price = $request->price;
-
                 }
-                if ($request->has('note')) {
+                if ($request->note) {
                     $ads->note = $request->note;
                 }
                 if ($request->hasFile('img_id')) {
                     $imgs = $request->file('img_id');
                     foreach ($imgs as $img) {
+                      //  $i=$request->img_id;
                         $img_url = time() . '.' . $img->getClientOriginalName();
                         $img->store('ads_images');
-                    }*/
-                    //  $ads->save();
+                        $img->save();
+                    }
                 }
-
+                $ads->save();
                 return response()->json([
                     'success' => 1,
                     'result' => $ads,
-                    'message' => __('res.update'),
+                    'message' => __('res.a_update'),
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => 0,
+                    'result' => null,
+                    'message' => __('res.show'),
                 ], 200);
             }
-        /*  else{
-            return response()->json([
-                'success' => 0,
-                'result' => null,
-                'message' => __('res.show'),
-            ], 200);
-          }*/
-         catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'success' => 0,
                 'result' => null,
